@@ -27,7 +27,7 @@ Bem-vindo ao **Espalhas Original**, um projeto desenvolvido pela equipe **Na Tor
 
 2. **Acesse o diretório do projeto**:
    ```bash
-   cd projeto-1-na-tora-team
+   cd espalhasTeam
    ```
 
 3. **Instale as dependências**:
