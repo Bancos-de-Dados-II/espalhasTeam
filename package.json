@@ -28,6 +28,7 @@
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.28",
+    "sequelize": "^6.37.7",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   }
