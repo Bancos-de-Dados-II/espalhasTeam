@@ -10,6 +10,7 @@ Bem-vindo ao **Espalhas Original**, um projeto desenvolvido pela equipe **Na Tor
 - **TypeScript** (v5+)
 - **Express** (Framework web)
 - **TSX** (Runtime para TypeScript)
+- **Sequelize**(v6+ TypeScript e Node.js ORM (Object-relational mapping))
 - **CORS** (Middleware para Cross-Origin Resource Sharing)
 
 ## 🛠️ Pré-requisitos
