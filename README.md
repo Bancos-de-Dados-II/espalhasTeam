@@ -22,7 +22,7 @@ Bem-vindo ao **Espalhas Original**, um projeto desenvolvido pela equipe **Na Tor
 
 1. **Clone o repositório**:
    ```bash
-   git clone https://github.com/Bancos-de-Dados-II/projeto-1-na-tora-team.git
+   git clone https://github.com/Bancos-de-Dados-II/espalhasTeam.git
    ```
 
 2. **Acesse o diretório do projeto**:
@@ -45,5 +45,5 @@ npm run dev
 ## 🌐 Acessando a API
 O servidor estará disponível em:
 ```
-http://localhost:3000/
+http://localhost:3333/
 ```
