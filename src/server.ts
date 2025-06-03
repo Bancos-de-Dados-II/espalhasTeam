@@ -8,9 +8,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use('/benefs', BenefRouter);
+
 app.listen(env.PORT, () => {
     ConfigSequelize();
     console.log(`🚀 Server is running at http://localhost:${env.PORT}`);
 });
 
-app.use('/benefs', BenefRouter);
