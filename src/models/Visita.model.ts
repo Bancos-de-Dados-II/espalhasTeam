@@ -39,7 +39,7 @@ export class Visita extends Model<Visita> {
 
     // chave estrangeira
     @ForeignKey(() => Beneficiario)
-    @Column(DataType.STRING)
+    @Column({type:DataType.UUID, defaultValue:DataType.UUIDV4})
     beneficiarioId!: string;
 
     @BelongsTo(() => Beneficiario)
