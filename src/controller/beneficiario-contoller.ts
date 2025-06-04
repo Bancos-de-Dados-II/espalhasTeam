@@ -1,22 +1,84 @@
-import { error } from 'console';
-import { Beneficiario } from './../models/Beneficiario.model';
-import { Request, Response } from 'express';
+import {error} from 'console';
+import {Request, Response} from 'express';
+import BeneficiarioService from '../service/beneficiario-service';
+import { Beneficiario } from '../models/Beneficiario.model';
 
-export async function getBenefs(req:Request,res:Response){
-    try{
-        const beneficiaros = await Beneficiario.findAll();
-        res.status(200).json(beneficiaros);
-    }catch{
-        res.status(400).json("Nenhum beneficiario encontrado!");
+export default class BeneficiarioController {
+    static async getBenefs(req: Request, res: Response) {
+        try {
+            const benefs = await BeneficiarioService.getAllBeneficiarios();
+            res.status(200).json(benefs);
+        } catch {
+            res.status(400).json('Nenhum beneficiario encontrado!');
+        }
     }
-}
 
-export async function createBenefs(req:Request,res:Response){
-    try{
-        const newBenef = await Beneficiario.create(req.body);
-        res.status(200).json(newBenef);
-    }catch(err){
-        console.log(error);
-        res.status(400).json("Erro ao cadastrar beneficiario!");
+    static async getBenefById(req: Request, res: Response) {
+        const {id} = req.params;
+
+        if (!id) {
+            res.status(400).json('O ID do beneficiário não foi identificado.');
+        }
+
+        try {
+            const benef = await BeneficiarioService.getById(id);
+            res.status(200).json(benef);
+        } catch (err) {
+            console.log(err);
+            res.status(400).json('Erro ao buscar beneficiario!');
+        }
+    }
+
+    static async createBenefs(req: Request, res: Response) {
+        const {nome, nome_responsavel, data_nascimento, location} = req.body;
+
+        if (!nome || !nome_responsavel || !data_nascimento || !location) {
+            res.status(400).json('Nome, Nome do Responsável, Data de Nascimento ou Localização não foi especificado.');
+        }
+        try {
+            const newBenef = await BeneficiarioService.insertBeneficiario(req.body);
+            res.status(201).json(newBenef);
+        } catch (err) {
+            console.log(err);
+            res.status(400).json('Erro ao cadastrar beneficiario!');
+        }
+    }
+
+    static async editBenef(req: Request, res: Response) {
+        const {id} = req.params;
+
+        if (!id) {
+            res.status(400).json('O ID do beneficiário não foi identificado.');
+        }
+
+        try {
+            const benefEdited = await BeneficiarioService.editBenefById(id, req.body);
+            res.status(200).json(benefEdited);
+        } catch (err) {
+            console.log(err);
+            res.status(400).json('Erro ao buscar beneficiario!');
+        }
+    }
+
+    static async deleteBenef(req: Request, res: Response) {
+        const { id } = req.params;
+    
+        if (!id) {
+            return res.status(400).json('O ID do beneficiário não foi identificado.');
+        }
+    
+        try {
+            const beneficiario = await BeneficiarioService.getById(id);
+    
+            if (!beneficiario) {
+                return res.status(404).json('Beneficiário não encontrado.');
+            }
+    
+            await beneficiario.destroy(); 
+            return res.status(200).json('Beneficiário excluído!');
+        } catch (error) {
+            console.error('Erro ao excluir beneficiário:', error);
+            return res.status(500).json('Erro interno ao excluir o beneficiário.');
+        }
     }
 }
