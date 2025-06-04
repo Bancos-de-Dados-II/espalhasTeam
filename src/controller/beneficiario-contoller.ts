@@ -16,7 +16,7 @@ export async function createBenefs(req:Request,res:Response){
         const newBenef = await Beneficiario.create(req.body);
         res.status(200).json(newBenef);
     }catch(err){
-        console.log(err);
+        console.log(error);
         res.status(400).json("Erro ao cadastrar beneficiario!");
     }
 }
