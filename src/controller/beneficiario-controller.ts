@@ -60,25 +60,27 @@ export default class BeneficiarioController {
         }
     }
 
-    static async deleteBenef(req: Request, res: Response) {
+    static deleteBenef = async (req: Request, res: Response): Promise<void> => {
         const { id } = req.params;
     
         if (!id) {
-            return res.status(400).json('O ID do beneficiário não foi identificado.');
+            res.status(400).json('O ID do beneficiário não foi identificado.');
+            return;
         }
     
         try {
             const beneficiario = await BeneficiarioService.getById(id);
     
             if (!beneficiario) {
-                return res.status(404).json('Beneficiário não encontrado.');
+                res.status(404).json('Beneficiário não encontrado.');
+                return;
             }
     
-            await beneficiario.destroy(); 
-            return res.status(200).json('Beneficiário excluído!');
+            await beneficiario.destroy();
+            res.status(200).json('Beneficiário excluído!');
         } catch (error) {
             console.error('Erro ao excluir beneficiário:', error);
-            return res.status(500).json('Erro interno ao excluir o beneficiário.');
+            res.status(500).json('Erro interno ao excluir o beneficiário.');
         }
     }
 }

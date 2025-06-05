@@ -20,7 +20,7 @@ const sequelize = new Sequelize({
 export default async function connectDatabase() {
   try {
     await sequelize.authenticate();
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ alter: true });
     console.log('✅ Conexão com o banco de dados estabelecida com sucesso');
     
     return sequelize;

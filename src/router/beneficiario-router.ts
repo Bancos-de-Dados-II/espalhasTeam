@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import BeneficiarioController from '../controller/beneficiario-contoller';
+import BeneficiarioController from '../controller/beneficiario-controller';
 
 const BenefRouter = express.Router();
 
