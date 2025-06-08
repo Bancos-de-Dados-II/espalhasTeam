@@ -1,5 +1,5 @@
-import { Column, DataType, HasMany, Model, PrimaryKey, Table} from 'sequelize-typescript';//BelongsToBelongsTo
-import { Visita } from './Visita.model';
+import {Column, DataType, HasMany, Model, PrimaryKey, Table} from 'sequelize-typescript'; //BelongsToBelongsTo
+import {Visita} from './Visita.model';
 //import { AssistenteSocial } from './AssistenteSocial.model';
 
 @Table({
@@ -8,7 +8,7 @@ import { Visita } from './Visita.model';
 })
 export class Beneficiario extends Model<Beneficiario> {
     @PrimaryKey
-    @Column(DataType.STRING)
+    @Column({type: DataType.UUID, defaultValue: DataType.UUIDV4})
     uuid!: string;
 
     @Column(DataType.STRING)
@@ -20,17 +20,20 @@ export class Beneficiario extends Model<Beneficiario> {
     @Column(DataType.STRING)
     data_nascimento!: string;
 
-    @Column(DataType.INTEGER)
-    phone1!: number;
-
-    @Column(DataType.INTEGER)
-    phone2!: number;
+    @Column(DataType.STRING)
+    phone1!: string;
 
     @Column(DataType.STRING)
-    latitude!: string;
+    phone2!: string;
 
-    @Column(DataType.STRING)
-    longitude!: string;
+    @Column({
+        type: DataType.GEOMETRY('POINT', 4326),
+        allowNull: false
+    })
+    location!: {
+        type: 'Point';
+        coordinates: [number, number];
+    };
 
     @HasMany(() => Visita)
     visitas!: Visita[];
