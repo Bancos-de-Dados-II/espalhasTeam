@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assistentes Sociais</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
+  <div class="container">
+    <h1>Cadastro de Beneficiário</h1>
     
+    <form id="assistente-form">
+      <input type="hidden" id="uuid" />
+      <input type="text" id="nome" placeholder="Nome" required />
+      <input type="email" id="email" placeholder="Responsável" required />
+      <input type="number" id="telefone" placeholder="Telefone 1" required />
+      <input type="number" id="telefone" placeholder="Telefone 2" required />
+      <button type="submit">Salvar</button>
+    </form>
+
+    <ul id="assistente-list"></ul>
+  </div>
+
+  <script src="./script.js"></script>
 </body>
 </html>
