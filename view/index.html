@@ -3,25 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Assistentes Sociais</title>
-  <link rel="stylesheet" href="./style.css" />
+  <title>Cadastro de Beneficiários</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>Cadastro de Beneficiário</h1>
-    
-    <form id="assistente-form">
+
+    <form id="beneficiario-form">
       <input type="hidden" id="uuid" />
       <input type="text" id="nome" placeholder="Nome" required />
-      <input type="email" id="email" placeholder="Responsável" required />
-      <input type="number" id="telefone" placeholder="Telefone 1" required />
+      <input type="text" id="Responsavel" placeholder="Responsável" required />
+      <input type="password" id="password" placeholder="Telefone 1" required />
       <input type="number" id="telefone" placeholder="Telefone 2" required />
-      <button type="submit">Salvar</button>
     </form>
 
-    <ul id="assistente-list"></ul>
+    <div class="search-container">
+      <input type="text" id="local" placeholder="Buscar por local..." />
+      <button id="botaoBuscar">Buscar</button>
+    </div>
+
+    <ul id="beneficiario-list"></ul>
+
+    <h2>Mapa</h2>
+    <div id="map">[ Mapa aparecerá aqui ]</div>
+    <div>
+      <button id="botaoSalvar">Salvar</button>
+    </div>
+    
   </div>
 
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
