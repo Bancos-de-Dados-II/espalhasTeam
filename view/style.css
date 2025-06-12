@@ -67,6 +67,11 @@ form button:hover {
   background-color: #0b7dda;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -116,7 +121,7 @@ li button {
   font-size: 18px;
 }
 
-#botaoSalvar {
+#botao {
   margin-top: 15px;
   width: 100%;
   padding: 10px;
@@ -128,6 +133,38 @@ li button {
   cursor: pointer;
 }
 
-#botaoSalvar:hover {
+#botao:hover {
   background-color: #45a049;
+}
+
+#botaoLink {
+  margin: 10px 0;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#botaoLink:hover {
+  background-color: #0056b3;
+}
+
+#botaoExcluir {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#botaoExcluir:hover {
+  background-color: red;
 }
