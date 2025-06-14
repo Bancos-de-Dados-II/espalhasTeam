@@ -1,3 +1,5 @@
+const botaoBuscar = document.getElementById("botaoBuscar");
+
 var center = [-7.17823297640175, -38.77776149398453];
 var map = L.map("map").setView(center, 13);
 var icone = L.icon({
@@ -35,8 +37,6 @@ map.on("dblclick", (evt) => {
     .then((local) => console.log(local.address));
 });
 
-const botaoBuscar = document.getElementById("botaoBuscar");
-
 botaoBuscar.addEventListener("click", () => {
   const local = document.getElementById("local").value;
 
@@ -73,11 +73,3 @@ botaoBuscar.addEventListener("click", () => {
   
 });
 
-const botaoSalvar = document.getElementById("botaoSalvar");
-botaoSalvar.addEventListener("click", (evt) => {
-  const obj = {
-    type: "Point",
-    coordinates: [marker.getLatLng().lng, marker.getLatLng().lat],
-  };
-  console.log(JSON.stringify(obj));
-});

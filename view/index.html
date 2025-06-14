@@ -20,8 +20,9 @@
       <input type="hidden" id="uuid" />
       <input type="text" id="nome" placeholder="Nome" required />
       <input type="text" id="Responsavel" placeholder="Responsável" required />
-      <input type="password" id="password" placeholder="Telefone 1" required />
-      <input type="number" id="telefone" placeholder="Telefone 2" required />
+      <input type="date" name="datanascimento" id="dtNascimento" required>
+      <input type="number" id="telefone1" placeholder="Telefone 1" required />
+      <input type="number" id="telefone2" placeholder="Telefone 2" />
     </form>
 
     <div class="search-container">
@@ -32,7 +33,7 @@
     <ul id="beneficiario-list"></ul>
 
     <h2>Mapa</h2>
-    <div id="map">[ Mapa aparecerá aqui ]</div>
+    <div id="map"></div>
     <div>
       <button id="botao">Salvar</button>
     </div>
@@ -40,6 +41,7 @@
       <button id="botaoLink"><a href="beneficiarios.html">Visualizar Beneficiários</a></button>
     </div>
   </div>
-    <script src="./script.js"></script>
+    <script src="./scripts/localizacao.js"></script>
+    <script src="./scripts/cadastroBenef.js"></script>
 </body>
 </html>

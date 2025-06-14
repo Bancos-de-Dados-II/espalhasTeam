@@ -30,9 +30,9 @@ export default class BeneficiarioController {
     }
 
     static async createBenefs(req: Request, res: Response) {
-        const {nome, nome_responsavel, data_nascimento, location} = req.body;
+        const {nome, nome_responsavel, data_nascimento, location, phone1, phone2} = req.body;
 
-        if (!nome || !nome_responsavel || !data_nascimento || !location) {
+        if (!nome || !nome_responsavel || !data_nascimento || !location ||!phone1 || !phone2) {
             res.status(400).json('Nome, Nome do Responsável, Data de Nascimento ou Localização não foi especificado.');
         }
         try {
