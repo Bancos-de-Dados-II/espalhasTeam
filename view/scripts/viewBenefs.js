@@ -84,7 +84,16 @@ function formatarData(dataISO) {
 }
 
 function editarBenef(id) {
-  alert(`Editar ainda não implementado. ID: ${id}`);
+  fetch(`${URL}/${id}`)
+    .then(res => res.json())
+    .then(benef => {
+      localStorage.setItem("beneficiarioEdit", JSON.stringify(benef));
+      window.location.href = "index.html";
+    })
+    .catch(err => {
+      console.error("Erro ao buscar beneficiário:", err);
+      alert("Erro ao carregar beneficiário.");
+    });
 }
 
 async function excluirBenef(id) {

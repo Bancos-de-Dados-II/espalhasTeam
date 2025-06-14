@@ -19,32 +19,37 @@ function clearField(){
     dataNascimento.value = '';
 }
 
-async function salvarBenef(localizacao){
+function salvarBenef(localizacao) {
+    const uuid = document.getElementById("uuid").value;
     const beneficiario = {
-    nome: nomeBenef.value,
-    nome_responsavel: nomeResp.value,
-    phone1: phone1.value,
-    phone2: phone2.value,
-    data_nascimento: dataNascimento.value,
-    location: localizacao
+      nome: nomeBenef.value,
+      nome_responsavel: nomeResp.value,
+      data_nascimento: document.getElementById("dtNascimento").value,
+      phone1: phone1.value,
+      phone2: phone1.value,
+      location: localizacao,
     };
-
-    try {
-    const response = await fetch(URL, {
-        method: "POST",
-        headers: {
-        "Content-Type":"application/json"
-        },
-        body: JSON.stringify(beneficiario)
+  
+    const method = uuid ? "PATCH" : "POST";
+    const url = uuid ? `${URL}/${uuid}` : URL;
+  
+    fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(beneficiario),
+    })
+      .then((res) => {
+        if (res.ok) {
+          alert(uuid ? "Beneficiário atualizado!" : "Beneficiário criado!");
+          clearField();
+          localStorage.removeItem("beneficiarioEdit");
+        } else {
+          alert("Erro ao salvar beneficiário.");
+        }
+    })
+    .catch((err) => {
+        console.error("Erro ao salvar beneficiário:", err);
     });
-    const data = await response.json();
-    console.log("Resposta da API:", data);
-    clearField();
-    alert("Beneficiário criado!");
-
-    }catch(error) {
-        console.error("Erro ao criar beneficiário:", error);
-    }
 }
   
 botaoSalvar.addEventListener("click", (evt) => {
@@ -55,4 +60,30 @@ botaoSalvar.addEventListener("click", (evt) => {
     };
     salvarBenef(localizacao);
 });
+
+window.addEventListener("DOMContentLoaded", () => {
+    const beneficiarioEdit = localStorage.getItem("beneficiarioEdit");
+    
+    if (beneficiarioEdit) {
+        const benef = JSON.parse(beneficiarioEdit);
   
+        document.getElementById("uuid").value = benef.uuid;
+        document.getElementById("nome").value = benef.nome;
+        document.getElementById("Responsavel").value = benef.nome_responsavel;
+        document.getElementById("telefone1").value = benef.phone1 || '';
+        document.getElementById("telefone2").value = benef.phone2 || '';
+        document.getElementById("dtNascimento").value = new Date(benef.data_nascimento)
+            .toISOString()
+            .split("T")[0];
+
+        const [lng, lat] = benef.location.coordinates;
+        const latlng = { lat, lng };
+        marker.setLatLng(latlng);
+        map.setView(latlng, 13);
+    }
+});
+
+document.getElementById("botaoLink").addEventListener("click", () => {
+    localStorage.removeItem("beneficiarioEdit");
+  });
+    
