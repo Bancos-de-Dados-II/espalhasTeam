@@ -18,6 +18,7 @@ const mapaDiv = document.createElement("div");
 mapaDiv.id = "mapa-view";
 mapaDiv.style.height = "250px";
 mapaDiv.style.width = "100%";
+mapaDiv.style.display = "block";
 
 modal.appendChild(closeBtn);
 modal.appendChild(mapaDiv);

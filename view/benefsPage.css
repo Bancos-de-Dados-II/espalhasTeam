@@ -24,7 +24,7 @@ border: 1px solid #ccc;
 
 
 #modal-mapa {
-  display: none;
+  display: block;
   position: fixed;
   top: 50%;
   left: 50%;
